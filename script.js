@@ -41,21 +41,55 @@ var makeButton = function(buttonName) {
 }
 
 var isSelected = function(cellId){
-	var on = true;
-	if (on == true){
-		document.getElementById(cellId).style.border = "2px solid #000";
-	}
+	document.getElementById(cellId).style.border = "2px solid #000";
+	
 }
 
 var unselect = function(cellId){
 	document.getElementById(cellId).style.border = "1px solid #000";
 }
 
-var calcMovement = function(currentCellId){
-	position = currentCellId;
-	unselect(currentCellId);
-	position = position + 1;
-	isSelected(position);
+var calcMovement = function(currentCellId, id){
+	switch(id) {
+		case 1: // UP
+			if (position - 4 > 0) {
+			position = currentCellId;
+			unselect(currentCellId);
+			position = position - 4;
+			isSelected(position);
+		}
+		break;
+
+		case 2: // DOWN
+			if (position + 4 < 13) {
+			position = currentCellId;
+			unselect(currentCellId);
+			position = position + 4;
+			isSelected(position);
+		}
+		break;
+
+		case 3: // LEFT
+			if (position - 1 != 0 && position - 1 != 4 && position - 1 != 8){
+			position = currentCellId;
+			unselect(currentCellId);
+			position = position - 1;
+			isSelected(position)
+		}
+		break;
+
+		case 4: // RIGHT
+			if (position + 1 <= 12 && position + 1 != 9 && position + 1 != 5){
+			position = currentCellId;
+			unselect(currentCellId);
+			position = position + 1;
+			isSelected(position);
+		}
+		break;
+
+		case 5: // MARK
+		break;
+	}
 }
 
 table();
@@ -65,8 +99,14 @@ makeButton("Down");
 makeButton("Left");
 makeButton("Right");
 makeButton("Mark");
-
+//console.log(document.getElementById("Right"));
 isSelected(1); // start at position 1
-//unselect(1);
+
 document.getElementById("Right").addEventListener("click", function(){
- calcMovement(position);});
+ calcMovement(position, 4);});
+document.getElementById("Left").addEventListener("click", function(){
+ calcMovement(position, 3);});
+document.getElementById("Down").addEventListener("click", function(){
+ calcMovement(position, 2);});
+document.getElementById("Up").addEventListener("click", function(){
+ calcMovement(position, 1);});
