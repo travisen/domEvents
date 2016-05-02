@@ -1,7 +1,7 @@
+var body = document.body;
 
 var makeTable = function(){
 
-	var body = document.body;
 	tbl = document.createElement("table");
 
 	for (var row = 1; row <= 4; ++row) {	
@@ -30,5 +30,19 @@ var makeTable = function(){
 	body.appendChild(tbl);
 }
 
+var makeButton = function(buttonName) {
+	var newButton = document.createElement("button");
+	newButton.textContent = buttonName;
+	newButton.id = buttonName;
+
+	body.appendChild(newButton);
+}
+
+// button id is same as button contents
 makeTable();
+makeButton("Up");
+makeButton("Down");
+makeButton("Left");
+makeButton("Right");
+makeButton("Mark");
 
