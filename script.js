@@ -92,6 +92,10 @@ var calcMovement = function(currentCellId, id){
 	}
 }
 
+var mark = function(cellId) {
+	document.getElementById(cellId).style.background = "#cce6ff";
+}
+
 table();
 // button id is same as button contents
 makeButton("Up");
@@ -110,3 +114,5 @@ document.getElementById("Down").addEventListener("click", function(){
  calcMovement(position, 2);});
 document.getElementById("Up").addEventListener("click", function(){
  calcMovement(position, 1);});
+document.getElementById("Mark").addEventListener("click", function(){
+ mark(position);});
